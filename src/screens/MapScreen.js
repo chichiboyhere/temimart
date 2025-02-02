@@ -44,9 +44,12 @@ export default function MapScreen() {
   };
   useEffect(() => {
     const fetch = async () => {
-      const { data } = await axios('/api/keys/google', {
-        headers: { Authorization: `BEARER ${userInfo.token}` },
-      });
+      const { data } = await axios(
+        'https://temimartapi.onrender.com/api/keys/google',
+        {
+          headers: { Authorization: `BEARER ${userInfo.token}` },
+        }
+      );
       setGoogleApiKey(data.key);
       getUserCurrentLocation();
     };
