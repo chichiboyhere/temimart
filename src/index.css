@@ -125,3 +125,13 @@ main {
 button.thumbnail {
   padding: 0;
 }
+
+@media (max-width: 768px) {
+  /* Styles for screens 768px and smaller */
+  .table {
+    display: block;
+    margin: 0 auto;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+}
