@@ -36,6 +36,10 @@ import UserEditScreen from './screens/UserEditScreen';
 import MapScreen from './screens/MapScreen';
 import ForgetPasswordScreen from './screens/ForgetPasswordScreen';
 import ResetPasswordScreen from './screens/ResetPasswordScreen';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import AppIcons from './components/AppIcons';
+import Socials from './components/Socials';
 
 function App() {
   const { state, dispatch: ctxDispatch } = useContext(Store);
@@ -89,7 +93,15 @@ function App() {
               </Button>
 
               <LinkContainer to="/">
-                <Navbar.Brand>amazona</Navbar.Brand>
+                <Navbar.Brand>
+                  <img
+                    className="img-large"
+                    src="/images/temi_logo.png"
+                    alt="site logo"
+                    width="60"
+                    height="50"
+                  ></img>
+                </Navbar.Brand>
               </LinkContainer>
               <Navbar.Toggle aria-controls="basic-navbar-nav" />
               <Navbar.Collapse id="basic-navbar-nav">
@@ -278,8 +290,97 @@ function App() {
             </Routes>
           </Container>
         </main>
-        <footer>
-          <div className="text-center">All rights reserved</div>
+        <div
+          className="container-fluid"
+          style={{ backgroundColor: 'black', color: 'gray' }}
+        >
+          <Row>
+            <Col md={3} style={{ flex: 1 }}>
+              <h6 style={{ color: 'white', paddingTop: 10 }}>Company Info</h6>
+
+              <ul
+                style={{
+                  listStyleType: 'none',
+                  margin: 0,
+                  padding: 0,
+                  fontSize: ' 0.8rem',
+                }}
+              >
+                <li>About Temi</li>
+                <li>Afiliate & Influencer: Earn commission</li>
+                <li>Contact us</li>
+                <li>Career</li>
+                <li>Press</li>
+                <li>Temi's Tree-Planting Program</li>
+              </ul>
+            </Col>
+            <Col md={3} style={{ flex: 1 }}>
+              <h6 style={{ color: 'white', paddingTop: 10 }}>
+                Customer Service
+              </h6>
+
+              <ul
+                style={{
+                  listStyleType: 'none',
+                  margin: 0,
+                  padding: 0,
+
+                  fontSize: ' 0.8rem',
+                }}
+              >
+                <li>Return and refund policy</li>
+                <li>Intellectual property policy</li>
+                <li>Shipping info</li>
+                <li>Report suspicious activity</li>
+              </ul>
+            </Col>
+            <Col md={3} style={{ flex: 1 }}>
+              <h6 style={{ color: 'white', paddingTop: 10 }}>Help</h6>
+
+              <ul
+                style={{
+                  listStyleType: 'none',
+                  margin: 0,
+                  padding: 0,
+
+                  fontSize: ' 0.8rem',
+                }}
+              >
+                <li>Support center & FAQ</li>
+                <li>Safety center</li>
+                <li>Temi purchase protection</li>
+                <li>Site map</li>
+                <li>Partner with Temi</li>
+              </ul>
+            </Col>
+            <Col md={3} style={{ flex: 1.5 }}>
+              <h6 style={{ color: 'white', paddingTop: 10 }}>
+                Download the Temi App
+              </h6>
+
+              <ul
+                style={{
+                  listStyleType: 'none',
+                  margin: 0,
+                  padding: 0,
+
+                  fontSize: ' 0.8rem',
+                }}
+              >
+                <li>Price drop alert | Track orders any time</li>
+                <li>Faster and more secure | Low stock items alert</li>
+                <li>Exclusive offers | Coupons & offers alert</li>
+              </ul>
+              <AppIcons />
+              <Socials />
+            </Col>
+          </Row>
+        </div>
+
+        <footer
+          style={{ backgroundColor: 'black', color: 'white', padding: 10 }}
+        >
+          <div className="text-center">All rights reserved &copy; 2025</div>
         </footer>
       </div>
     </BrowserRouter>
