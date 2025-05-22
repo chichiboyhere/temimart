@@ -27,14 +27,36 @@ export default function ProfileScreen() {
   const [name, setName] = useState(userInfo.name);
   const [email, setEmail] = useState(userInfo.email);
   const [password, setPassword] = useState('');
+  const [image, setImage] = useState(null);
   const [confirmPassword, setConfirmPassword] = useState('');
 
   const [{ loadingUpdate }, dispatch] = useReducer(reducer, {
     loadingUpdate: false,
   });
 
+  const [imageBase64, setImageBase64] = useState('');
+
+  // convert image file to base64
+  const setFileToBase64 = (file) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onloadend = () => {
+      setImageBase64(reader.result);
+    };
+  };
+
+  const handleImage = (e) => {
+    const file = e.target.files[0];
+    setImage(file);
+    setFileToBase64(file);
+  };
+
   const submitHandler = async (e) => {
     e.preventDefault();
+    if (password !== confirmPassword) {
+      toast.error('Passwords do not match');
+      return;
+    }
     try {
       const { data } = await axios.put(
         'https://temimartapi.onrender.com/api/users/profile',
@@ -42,6 +64,7 @@ export default function ProfileScreen() {
           name,
           email,
           password,
+          profileImage: imageBase64,
         },
         {
           headers: { Authorization: `Bearer ${userInfo.token}` },
@@ -84,6 +107,17 @@ export default function ProfileScreen() {
             onChange={(e) => setEmail(e.target.value)}
             required
           />
+          <Form.Group className="mb-3" controlId="image">
+            <Form.Label>Upload Profile Image</Form.Label>
+            <input
+              name="image"
+              placeholder="Image"
+              type="file"
+              accept="image/*"
+              id="image"
+              onChange={handleImage}
+            />
+          </Form.Group>
         </Form.Group>
         <Form.Group className="mb-3" controlId="password">
           <Form.Label>Password</Form.Label>
